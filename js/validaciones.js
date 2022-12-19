@@ -1,14 +1,13 @@
-export function valida(input) {
-  const tipoDeInput = input.dataset.tipo;
-  if (validadores[tipoDeInput]) {
-    validadores[tipoDeInput](input);
+export function valida(input) { // Exportar la función valida recibiendo como parametro el input que recibe del documento app.js al escuchar el evento
+  const tipoDeInput = input.dataset.tipo; // Guarda en una constante el tipo de data del input
+  if (validadores[tipoDeInput]) { // Si la funcion validadiores es true (Igual al input de nacimiento)
+    validadores[tipoDeInput](input); 
   }
-
-  if (input.validity.valid) {
-    input.parentElement.classList.remove("input-container--invalid");
-    input.parentElement.querySelector(".input-message-error").innerHTML = "";
+  if (input.validity.valid) { //Si el input esta en valor true en la propiedad validity (El usuario ingreso su info)
+    input.parentElement.classList.remove("input-container--invalid"); //Remueve la clase css
+    input.parentElement.querySelector(".input-message-error").innerHTML = ""; //No muestra ningun error en el elemento de errores
   } else {
-    input.parentElement.classList.add("input-container--invalid");
+    input.parentElement.classList.add("input-container--invalid"); //Sino agrega la clase  
     input.parentElement.querySelector(".input-message-error").innerHTML =
       mostrarMensajeDeError(tipoDeInput, input);
   }
